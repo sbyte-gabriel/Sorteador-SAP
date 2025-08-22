@@ -11,7 +11,7 @@
             <u:FileUploader id="fileUploader" fileType="csv" width="50%" change="onFileChange"/>
             <Table id="dataTable" items="{/data}">
               <columns>
-                <Column>
+                <Column width="100px">
                   <Text text="Número"/>
                 </Column>
                 <Column>
@@ -31,7 +31,7 @@
               </Toolbar>
               <Table id="drawnTable" items="{/dataDrawn}">
                 <columns>
-                  <Column><Text text="Número"/></Column>
+                  <Column width="100px"><Text text="Número"/></Column>
                   <Column><Text text="Nome"/></Column>
                 </columns>
                 <items>
