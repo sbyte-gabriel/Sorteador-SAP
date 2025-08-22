@@ -1,16 +1,47 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast"],
-  (Controller, MessageToast) => {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "js-confetti",
+    "sap/ui/core/Fragment"
+  ],
+  (Controller, MessageToast, JSConfetti, Fragment) => {
     "use strict";
 
     return Controller.extend("zuisorteador.controller.View1", {
       onInit: function () {
-        if (window.JSConfetti) {
-          this._jsConfetti = new window.JSConfetti();
+        if (JSConfetti) {
+          this._jsConfetti = new JSConfetti();
         } else {
-          console.warn(
-            "JSConfetti não foi definido. Verifique o script no index.html."
-          );
+          console.log("JSConfetti não está disponível.");
+        }
+
+        this._pDialog = null;
+      },
+
+      _openWinnerDialog() {
+        const oView = this.getView();
+        if (!this._pDialog) {
+          this._pDialog = Fragment.load({
+            id: oView.getId(),
+            name: "zuisorteador.view.WinnerDialog",
+            controller: this
+          }).then((oDialog) => {
+            oView.addDependent(oDialog);
+            return oDialog;
+          });
+        }
+        this._pDialog.then((oDialog) => oDialog.open());
+      },
+      onDialogAfterOpen() {
+        if (this._jsConfetti) {
+          this._jsConfetti.addConfetti({
+            confettiNumber: 30,
+            emojis: ["🎉", "✨", "🏆"]
+            // opcional: limitar cores, ângulo, ...
+          });
+        } else {
+          console.warn("JSConfetti não disponível para animar confetti");
         }
       },
 
@@ -61,35 +92,19 @@ sap.ui.define(
         reader.readAsText(file, "UTF-8");
       },
 
-      showConfetti: function (amount = 50) {
-        for (let i = 0; i < amount; i++) {
-          const confetti = document.createElement("div");
-          confetti.classList.add("confetti");
-          document.body.appendChild(confetti);
-
-          // Estilos e animações para o confete
-          confetti.style.position = "absolute";
-          confetti.style.top = `${Math.random() * window.innerHeight}px`;
-          confetti.style.left = `${Math.random() * window.innerWidth}px`;
-          confetti.style.width = "10px";
-          confetti.style.height = "10px";
-          confetti.style.backgroundColor = this._getRandomColor();
-          confetti.style.animation = "fall 5s ease-in-out forwards";
-
-          // Remover o confete após a animação
-          setTimeout(() => {
-            confetti.remove();
-          }, 5000);
-        }
+      _showConfetti: function () {
+        JSConfetti({ particleCount: 200, spread: 70, origin: { y: 0.6 } });
       },
-      _getRandomColor: function () {
-        const letters = "0123456789ABCDEF";
-        let color = "#";
-        for (let i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
+
+      onDialogClose: function () {
+        const oDialog = this.getView().byId("winnerDialog");
+        if (oDialog) {
+          oDialog.close();
+          oDialog.destroy();
         }
-        return color;
+        this._pDialog = null;
       },
+
       onSortear: function () {
         const oModel = this.getView().getModel();
         const aData = oModel.getProperty("/data") || [];
@@ -102,18 +117,17 @@ sap.ui.define(
 
         const iIndex = Math.floor(Math.random() * aData.length);
         const oParticipant = aData.splice(iIndex, 1)[0];
-        aDataDrawn.push(oParticipant);
+
+        // Adiciona o participante no início da lista de sorteados
+        aDataDrawn.unshift(oParticipant);
 
         oModel.setProperty("/data", aData);
         oModel.setProperty("/dataDrawn", aDataDrawn);
+        oModel.setProperty("/ultimoSorteado", oParticipant); // Adiciona o novo participante sorteado
 
-        const nome =
-          oParticipant.nome ||
-          oParticipant.number ||
-          JSON.stringify(oParticipant);
-        MessageToast.show(`Sorteado: ${nome}`);
-        this.showConfetti();
+        this._openWinnerDialog();
       }
+      // MessageToast.show(`Sorteado: ${nome}`);
     });
   }
 );

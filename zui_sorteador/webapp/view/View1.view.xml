@@ -1,31 +1,26 @@
-<mvc:View
+<mvc:View xmlns:uxap="sap.uxap"
   controllerName="zuisorteador.controller.View1"
   xmlns:u="sap.ui.unified"
   xmlns:mvc="sap.ui.core.mvc"
+  xmlns:semantic="sap.m.semantic"
   xmlns="sap.m">
   <App id="idApp">
     <pages>
-      <Page id="mainPage" title="Importar CSV e Sortear">
-        <content>
-          <VBox>
-            <u:FileUploader id="fileUploader" fileType="csv" width="50%" change="onFileChange"/>
-            <Table id="dataTable" items="{/data}">
-              <columns>
-                <Column width="100px">
-                  <Text text="Número"/>
-                </Column>
-                <Column>
-                  <Text text="Nome"/>
-                </Column>
-              </columns>
-              <items>
-                <ColumnListItem>
-                  <Text text="{numero}"/>
-                  <Text text="{nome}"/>
-                </ColumnListItem>
-              </items>
-            </Table>
+      
+      <semantic:SemanticPage id="mainPage" >
+        
+          <uxap:ObjectPageHeader >
+            <u:FileUploader id="fileUploader" fileType="csv" change="onFileChange" buttonOnly="true" buttonText="Importar Lista"/>
             <Button text="Sortear" press=".onSortear" visible="{= ${/data}.length > 0 }" />
+          </uxap:ObjectPageHeader>
+        
+        <VBox>
+            <Text
+              id="winnerText"
+              text="{= 'Último sorteado - ' + ${/ultimoSorteado/nome} }"
+              textAlign="Center"
+              visible="{= ${/ultimoSorteado/nome} !== undefined }"
+              class="ultimoSorteadoText"/>
               <Toolbar>
                 <Title text="Sorteados" level="H3" />
               </Toolbar>
@@ -44,8 +39,7 @@
                 </items>
               </Table>
           </VBox>
-        </content>
-      </Page>
+      </semantic:SemanticPage>
     </pages>
   </App>
 </mvc:View>

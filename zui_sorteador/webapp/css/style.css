@@ -10,13 +10,50 @@
   }
 }
 
-.confetti {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 10px;
-  height: 10px;
-  background-color: red;
-  opacity: 0;
-  animation: fall 2s infinite;
+.winnerText {
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  align-self: center;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #05f936;
+  margin: 2rem 1;
+  animation: pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+}
+
+.ultimoSorteadoText {
+  font-size: 3rem;
+  font-weight: bold;
+  background-image: linear-gradient(90deg, #ff007f, #ff7f00, #ff007f);
+  background-clip: text;
+  -webkit-background-clip: text;
+  align-content: center;
+  color: transparent;
+  text-shadow: 0 0 5px rgba(238, 67, 67, 0.8), 0 0 10px rgba(31, 18, 211, 0.6), 0 0 15px rgba(185, 112, 34, 0.4);
+  animation: glow 1.5s ease-in-out infinite alternate;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  text-align: center;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(191, 255, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(172, 52, 5, 0.6);
+  }
 }

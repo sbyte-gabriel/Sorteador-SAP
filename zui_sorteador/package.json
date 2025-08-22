@@ -8,16 +8,22 @@
     "sapui5"
   ],
   "main": "webapp/index.html",
-  "dependencies": {},
+  "dependencies": {
+    "canvas-confetti": "^1.9.3"
+  },
   "devDependencies": {
-    "@ui5/cli": "^3.0.0",
-    "@sap/ux-ui5-tooling": "1",
-    "eslint": "8.57.0",
-    "@sap/eslint-plugin-ui5-jsdocs": "2.0.5",
-    "@sapui5/ts-types": "~1.139.0",
+    "@babel/eslint-parser": "7.14.7",
     "@sap-ux/eslint-plugin-fiori-tools": "^0.4.0",
+    "@sap/eslint-plugin-ui5-jsdocs": "2.0.5",
+    "@sap/ux-ui5-tooling": "1",
+    "@sapui5/ts-types": "~1.139.0",
+    "@ui5/cli": "^3.0.0",
+    "eslint": "8.57.0",
     "eslint-plugin-fiori-custom": "2.6.7",
-    "@babel/eslint-parser": "7.14.7"
+    "ui5-tooling-modules": "^3.30.2"
+  },
+  "ui5": {
+    "dependencies": ["ui5-tooling-modules"]
   },
   "scripts": {
     "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#zuisorteador-display\"",

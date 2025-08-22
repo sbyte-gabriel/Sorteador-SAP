@@ -1,0 +1,21 @@
+<core:FragmentDefinition xmlns="sap.m" xmlns:core="sap.ui.core" >
+  <Dialog
+  verticalScrolling="false"
+  horizontalScrolling="false"
+    id="winnerDialog"
+    title="Parabéns!"
+    stretch="false"
+    afterOpen=".onDialogAfterOpen">
+    <content>
+        <VBox >
+            <Text
+              text="{= ${/ultimoSorteado/nome} }"
+              textAlign="Center"
+              class="winnerText"/>
+        </VBox>
+    </content>
+    <endButton>
+      <Button text="OK" press=".onDialogClose"/>
+    </endButton>
+  </Dialog>
+</core:FragmentDefinition>
