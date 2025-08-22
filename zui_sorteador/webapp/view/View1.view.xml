@@ -1,0 +1,51 @@
+<mvc:View
+  controllerName="zuisorteador.controller.View1"
+  xmlns:u="sap.ui.unified"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m">
+  <App id="idApp">
+    <pages>
+      <Page id="mainPage" title="Importar CSV e Sortear">
+        <content>
+          <VBox>
+            <u:FileUploader id="fileUploader" fileType="csv" width="50%" change="onFileChange"/>
+            <Table id="dataTable" items="{/data}">
+              <columns>
+                <Column>
+                  <Text text="Número"/>
+                </Column>
+                <Column>
+                  <Text text="Nome"/>
+                </Column>
+              </columns>
+              <items>
+                <ColumnListItem>
+                  <Text text="{numero}"/>
+                  <Text text="{nome}"/>
+                </ColumnListItem>
+              </items>
+            </Table>
+            <Button text="Sortear" press=".onSortear" visible="{= ${/data}.length > 0 }" />
+              <Toolbar>
+                <Title text="Sorteados" level="H3" />
+              </Toolbar>
+              <Table id="drawnTable" items="{/dataDrawn}">
+                <columns>
+                  <Column><Text text="Número"/></Column>
+                  <Column><Text text="Nome"/></Column>
+                </columns>
+                <items>
+                  <ColumnListItem>
+                    <cells>
+                      <Text text="{numero}" />
+                      <Text text="{nome}" />
+                    </cells>
+                  </ColumnListItem>
+                </items>
+              </Table>
+          </VBox>
+        </content>
+      </Page>
+    </pages>
+  </App>
+</mvc:View>
