@@ -9,7 +9,8 @@
   ],
   "main": "webapp/index.html",
   "dependencies": {
-    "canvas-confetti": "^1.9.3"
+    "canvas-confetti": "^1.9.3",
+    "js-confetti": "^0.13.1"
   },
   "devDependencies": {
     "@babel/eslint-parser": "7.14.7",
@@ -23,7 +24,9 @@
     "ui5-tooling-modules": "^3.30.2"
   },
   "ui5": {
-    "dependencies": ["ui5-tooling-modules"]
+    "dependencies": [
+      "ui5-tooling-modules"
+    ]
   },
   "scripts": {
     "start": "fiori run --open \"test/flpSandbox.html?sap-ui-xx-viewCache=false#zuisorteador-display\"",

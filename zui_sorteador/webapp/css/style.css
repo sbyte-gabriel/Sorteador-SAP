@@ -13,12 +13,12 @@
 .winnerText {
   display: block;
   white-space: nowrap;
-  overflow: hidden;
+  overflow: inherit;
   align-self: center;
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.0rem;
   font-weight: bold;
-  color: #05f936;
+  color: #000000;
   margin: 2rem 1;
   animation: pulse 2s infinite ease-in-out;
 }
@@ -35,7 +35,7 @@
 .ultimoSorteadoText {
   font-size: 3rem;
   font-weight: bold;
-  background-image: linear-gradient(90deg, #ff007f, #ff7f00, #ff007f);
+  background-image: linear-gradient(90deg, #1e21b6, #140352, #1e21b6);
   background-clip: text;
   -webkit-background-clip: text;
   align-content: center;
@@ -51,9 +51,9 @@
 
 @keyframes glow {
   0% {
-    text-shadow: 0 0 5px rgba(255, 255, 255, 0.8), 0 0 10px rgba(191, 255, 0, 0.6), 0 0 15px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(0, 153, 255, 0.6);
   }
   100% {
-    text-shadow: 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(172, 52, 5, 0.6);
+    text-shadow: 0 0 5px rgba(83, 149, 248, 0.6), 0 0 10px rgba(175, 174, 174, 0.6), 0 0 15px rgba(83, 149, 248, 0.6);
   }
 }

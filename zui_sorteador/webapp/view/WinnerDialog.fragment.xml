@@ -5,7 +5,8 @@
     id="winnerDialog"
     title="Parabéns!"
     stretch="false"
-    afterOpen=".onDialogAfterOpen">
+    afterOpen=".onDialogAfterOpen"
+    contentWidth="600px">
     <content>
         <VBox >
             <Text

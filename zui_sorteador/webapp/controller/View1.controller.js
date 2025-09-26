@@ -36,7 +36,7 @@ sap.ui.define(
       onDialogAfterOpen() {
         if (this._jsConfetti) {
           this._jsConfetti.addConfetti({
-            confettiNumber: 30,
+            confettiNumber: 100,
             emojis: ["🎉", "✨", "🏆"]
             // opcional: limitar cores, ângulo, ...
           });

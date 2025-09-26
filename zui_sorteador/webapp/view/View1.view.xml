@@ -6,14 +6,14 @@
   xmlns="sap.m">
   <App id="idApp">
     <pages>
-      
-      <semantic:SemanticPage id="mainPage" >
-        
+      <semantic:SemanticPage id="mainPage" showFooter="true">
           <uxap:ObjectPageHeader >
-            <u:FileUploader id="fileUploader" fileType="csv" change="onFileChange" buttonOnly="true" buttonText="Importar Lista"/>
-            <Button text="Sortear" press=".onSortear" visible="{= ${/data}.length > 0 }" />
+            
+    <HBox alignItems="Center" class="myHeaderHBox" width="790px" height="10px">
+      <Image src="../arquivos/versao1 (1).png" height="200px" width="auto" id="logosinos"/>
+    </HBox>
           </uxap:ObjectPageHeader>
-        
+        <semantic:content>
         <VBox>
             <Text
               id="winnerText"
@@ -39,6 +39,21 @@
                 </items>
               </Table>
           </VBox>
+          </semantic:content>
+
+          <semantic:customFooterContent>
+            <u:FileUploader id="fileUploader"
+                            fileType="csv"
+                            change="onFileChange"
+                            buttonOnly="true"
+                            buttonText="Importar Lista" 
+                            style="Transparent"/>
+            <Button text="Sortear"
+                    press=".onSortear"
+                    visible="{= ${/data}.length > 0 }" 
+                    type="Emphasized"/>
+   
+        </semantic:customFooterContent>
       </semantic:SemanticPage>
     </pages>
   </App>
